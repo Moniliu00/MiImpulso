@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="impulso_negro">#FF000000</color>
+    <color name="impulso_blanco">#FFFFFFFF</color>
+    <color name="impulso_fondo">#F7F3ED</color>
+    <color name="impulso_verde">#405B46</color>
+    <color name="impulso_estudios">#70866B</color>
+    <color name="impulso_proyectos">#A87E75</color>
+    <color name="impulso_personal">#9481A1</color>
+    <color name="impulso_texto">#777360</color>
+</resources>

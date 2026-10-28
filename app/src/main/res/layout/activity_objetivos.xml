@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:background="@color/impulso_fondo">
+
+    <TextView
+        android:id="@+id/txtCategoria"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Mis objetivos"
+        android:textSize="28dp"
+        android:textColor="@color/impulso_verde"
+        android:gravity="center"/>
+
+    <Button
+        android:id="@+id/btnVolver"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Volver al inicio"
+        android:textColor="@color/impulso_blanco"
+        android:backgroundTint="@color/impulso_verde"
+        android:layout_marginTop="24dp"/>
+
+</LinearLayout>

@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/main"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:layout_gravity="center"
+    android:padding="24dp"
+    android:background="@color/impulso_fondo">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MI IMPULSO"
+        android:textSize="32sp"
+        android:textStyle="bold"
+        android:textColor="@color/impulso_verde"
+        android:gravity="center"
+        android:layout_marginBottom="12dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Organiza tus metas, avanza a tu ritmo"
+        android:textSize="16sp"
+        android:textColor="@color/impulso_texto"
+        android:gravity="center"
+        android:layout_marginBottom="48dp"/>
+    <Button
+        android:id="@+id/btnEstudios"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MIS ESTUDIOS"
+        android:textColor="@color/impulso_blanco"
+        android:backgroundTint="@color/impulso_estudios"
+        android:layout_marginBottom="16dp"/>
+    <Button
+        android:id="@+id/btnProtectos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MIS PROYECTOS"
+        android:textColor="@color/impulso_blanco"
+        android:backgroundTint="@color/impulso_proyectos"
+        android:layout_marginBottom="16dp"/>
+    <Button
+        android:id="@+id/btnPersonal"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="MIS OBJETIVOS PERSONALES"
+        android:textColor="@color/impulso_blanco"
+        android:backgroundTint="@color/impulso_personal"/>
+
+
+</LinearLayout>
