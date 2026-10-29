@@ -13,6 +13,7 @@ class ObjetivoDAO (val context: Context){
         values.put("titulo", objetivo.titulo)
         values.put("categoria", objetivo.categoria)
         values.put("completado", if (objetivo.completado) 1 else 0)
+        values.put("descripcion", objetivo.decripcion)
 
         db.insertOrThrow("objetivos", null,  values)
         db.close()
@@ -77,6 +78,23 @@ class ObjetivoDAO (val context: Context){
         db.update("objetivos", values, "id = ?", arrayOf(objetivo.id.toString()))
 
         // cierra la coneccion
+        db.close()
+
+    }
+
+    // crea una funcion para eliminar
+    fun delete(objetivo: Objetivo){
+
+        // abre la base de datos para modificarla
+        val db = DataBaseManager(context).writableDatabase
+
+        // elimina un registro de SQLite
+
+        db.delete(
+            "objetivos",
+            "id = ?",
+            arrayOf(objetivo.id.toString())
+        )
         db.close()
 
     }

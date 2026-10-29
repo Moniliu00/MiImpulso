@@ -5,6 +5,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
+import android.widget.ImageButton
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.moniliu.miimpulso.R
@@ -16,7 +17,8 @@ class ObjetivoAdapter (
 
     private var objetivos: List<Objetivo>,
     private val onItemClick: (Objetivo) -> Unit,
-    private val onItemCheck: (Objetivo) -> Unit
+    private val onItemCheck: (Objetivo) -> Unit,
+    private val onItemDelete: (Objetivo) -> Unit
 ) : RecyclerView.Adapter<ObjetivoAdapter.ObjetivoViewHolder>() {
 
 
@@ -27,6 +29,8 @@ class ObjetivoAdapter (
         val titulo: TextView = view.findViewById(R.id.txtTituloObjetivo)
 
         val check: CheckBox = view.findViewById(R.id.checkCompletado)
+
+        val eliminar : ImageButton = view.findViewById(R.id.btnEliminar)
 
     }
 
@@ -48,6 +52,10 @@ class ObjetivoAdapter (
     ){
         val objetivo = objetivos[position]
 
+        holder.eliminar.setOnClickListener {
+            onItemDelete(objetivo)
+        }
+
         holder.titulo.text = objetivo.titulo
         holder.check.isChecked = objetivo.completado
         // cuando pulsemos la casilla
@@ -58,7 +66,13 @@ class ObjetivoAdapter (
         }
 
         // cuando pulsamos la fila
-        holder.itemView.setOnClickListener { onItemClick(objetivo) }
+        holder.itemView.setOnClickListener { onItemClick(objetivo)
+        }
+
+        holder.itemView.setOnLongClickListener {
+            onItemDelete(objetivo)
+            true
+        }
     }
 
     // indica cuantos objetivos hay

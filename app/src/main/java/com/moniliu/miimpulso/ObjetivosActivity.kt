@@ -1,5 +1,6 @@
 package com.moniliu.miimpulso
 
+import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -12,6 +13,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import com.moniliu.miimpulso.activities.DetalleObjetivoActivity
 import com.moniliu.miimpulso.adapters.ObjetivoAdapter
 import com.moniliu.miimpulso.data.Objetivo
 import com.moniliu.miimpulso.data.ObjetivoDAO
@@ -48,15 +50,55 @@ class ObjetivosActivity : AppCompatActivity() {
         val adapter  = ObjetivoAdapter(
             objetivosFiltrados,
 
-            onItemClick =   { objetivo ->
-                Toast.makeText(
-                    this,
-                    "Has pulsado: $(objetivo.titulo)",
-                    Toast.LENGTH_SHORT
-                ).show()
+            onItemClick = { objetivo ->
+                val intent = Intent(
+                this,
+                DetalleObjetivoActivity::class.java
+            )
+                intent.putExtra("titulo", objetivo.titulo)
+                intent.putExtra("categoria", objetivo.categoria)
+                intent.putExtra("completado", objetivo.completado)
+                startActivity(intent)
+
         },
-            onItemCheck = {objetivo ->
-                objetivoDAO.update(objetivo)
+            onItemCheck = { ojetivo ->
+                objetivoDAO.update(ojetivo)
+
+            },
+
+            // recibe el objetivo que has mantenido pulsado
+
+            onItemDelete = { ojetivo ->
+
+                // abre una ventana preguntando si quieres eliminarlo
+                AlertDialog.Builder(this)
+                    .setTitle("Eliminar objetivo")
+                    .setMessage("Esta acción eliminará el objetivo de forma permanente.")
+                    .setPositiveButton("Eliminar"){ _ , _ ->
+
+
+                        // elimina de SQLite solmente cuando confirmas
+
+                        objetivoDAO.delete(ojetivo)
+
+                        // actualiza lo que aparece en pantalla
+
+                        val listaActualizada = objetivoDAO.findAll().filter {
+                            it.categoria == categoria
+                        }
+
+                        recyclerObjetivos.adapter?.let {
+
+                            (it as ObjetivoAdapter)
+                                .actualizarLista(listaActualizada)
+                        }
+
+
+                    }
+                    .setNegativeButton ("Cancelar", null).
+                    show()
+
+
             }
 
 

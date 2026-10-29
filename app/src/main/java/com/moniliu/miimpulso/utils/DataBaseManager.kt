@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 // gestiona la creación de la base de datos
 class DataBaseManager (context: Context) :
-        SQLiteOpenHelper(context, "miimpulso.db", null,1){
+        SQLiteOpenHelper(context, "miimpulso.db", null,2){
 
     // crea la tabla cuando se utiliza la base de datos por primera vez
 
@@ -17,7 +17,8 @@ class DataBaseManager (context: Context) :
                id INTEGER PRIMARY KEY AUTOINCREMENT,
                titulo TEXT NOT NULL,
                categoria TEXT NOT NULL,
-               completado INTEGER NOT NULL DEFAULT 0)
+               completado INTEGER NOT NULL DEFAULT 0,
+               description TEXT NOT NULL DEFAULT '')
                """.trimIndent()
 
         )
@@ -25,6 +26,8 @@ class DataBaseManager (context: Context) :
     // servira para actualizar la estructura en futuras versiones
 
     override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-        // por ahora no necesitamos migraciones
+       if (oldVersion > 2){
+          db.execSQL ("ALER TABLE objetivos ADD COLUMN description TEXT NOT NULL DEFAULT ''")
+       }
     }
 }

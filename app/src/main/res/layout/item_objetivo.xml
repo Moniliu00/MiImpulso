@@ -22,4 +22,15 @@
         android:textSize="16sp"
         android:textColor="@color/impulso_verde"/>
 
+    <ImageButton
+        android:id="@+id/btnEliminar"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
+        android:src="@drawable/ic_delete"
+        android:background="@android:color/transparent"
+        android:contentDescription="Eliminar objetivo"
+        android:padding="12dp"
+        android:tint="@color/impulso_proyectos"
+        />
+
 </LinearLayout>
