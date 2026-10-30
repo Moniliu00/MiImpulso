@@ -5,5 +5,5 @@ data class Objetivo (
     var titulo: String,
     var categoria: String,
     var completado: Boolean = false,
-    var decripcion: String = ""
+    var descripcion: String = ""
 )

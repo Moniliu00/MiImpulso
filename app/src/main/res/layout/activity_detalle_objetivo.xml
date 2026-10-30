@@ -60,6 +60,15 @@
                 android:textSize="18sp"
                 android:layout_marginTop="24dp"/>
 
+            <TextView
+                android:id="@+id/txtDetalleDescripcion"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Sin descripción"
+                android:textSize="16sp"
+                android:textColor="@color/impulso_verde"
+                android:layout_marginTop="24dp"/>
+
 
             <TextView
                 android:id="@+id/txtDetalleEstado"

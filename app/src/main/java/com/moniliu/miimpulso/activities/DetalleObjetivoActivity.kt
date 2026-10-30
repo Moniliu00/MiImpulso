@@ -19,6 +19,8 @@ class DetalleObjetivoActivity : AppCompatActivity() {
 
         val titulo = intent.getStringExtra("titulo")
         val categoria = intent.getStringExtra("categoria")
+        val descripcion = intent.getStringExtra("descripcion")
+
 
         //recupera un valor verdadero o falso
         val completado = intent.getBooleanExtra("completado", false)
@@ -26,10 +28,21 @@ class DetalleObjetivoActivity : AppCompatActivity() {
         val txtTitulo = findViewById<TextView>(R.id.txtDetalleTitulo)
         val txtCategoria = findViewById<TextView>(R.id.txtDetalleCategoria)
         val txtEstado = findViewById<TextView>(R.id.txtDetalleEstado)
+        val txtDescripcion = findViewById<TextView>(R.id.txtDetalleDescripcion)
 
         txtTitulo.text = titulo ?: "Sin titulo"
         txtCategoria.text = categoria ?: "Sin categoria"
         txtEstado.text = if (completado)"Completado" else "Pendiente"
+
+
+        //comprueba si el usuario no ha escrito ninguna descripcion
+        txtDescripcion.text = if (descripcion.isNullOrBlank()){
+            "Sin descripcion"
+
+            // muestra si la descripcion es real
+        } else {
+            descripcion
+        }
 
         val btnVolver = findViewById<Button>(R.id.btnVolverObjetivos)
         btnVolver.setOnClickListener {

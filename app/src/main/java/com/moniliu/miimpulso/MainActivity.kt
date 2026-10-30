@@ -18,29 +18,24 @@ class MainActivity : AppCompatActivity() {
 
         val btnEstudios = findViewById<Button>(R.id.btnEstudios)
         btnEstudios.setOnClickListener {
-
-            val btnProyectos = findViewById<Button>(R.id.btnProtectos)
-            btnProyectos.setOnClickListener {
-
-                val intent= Intent (this, ObjetivosActivity::class.java)
-                intent.putExtra("categoria", "Proyectos")
-                startActivity(intent)
-            }
-
-            val btnPersonal = findViewById<Button>(R.id.btnPersonal)
-            btnPersonal.setOnClickListener {
-
-                val intent = Intent(this, ObjetivosActivity::class.java)
-                intent.putExtra("categoria", "Personal")
-                startActivity(intent)
-            }
-
             val intent = Intent(this, ObjetivosActivity::class.java)
-            intent.putExtra ("categoria","Estudios")
+            intent.putExtra("categoria", "Estudios")
             startActivity(intent)
-
-
         }
+
+        val btnProyectos = findViewById<Button>(R.id.btnProtectos)
+        btnProyectos.setOnClickListener {
+            val intent= Intent (this, ObjetivosActivity::class.java)
+            intent.putExtra("categoria", "Proyectos")
+            startActivity(intent)
+            }
+
+        val btnPersonal = findViewById<Button>(R.id.btnPersonal)
+        btnPersonal.setOnClickListener {
+            val intent = Intent(this, ObjetivosActivity::class.java)
+            intent.putExtra("categoria", "Personal")
+            startActivity(intent)
+            }
 
 
 

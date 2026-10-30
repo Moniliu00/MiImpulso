@@ -17,7 +17,7 @@
         android:textColor="@color/impulso_verde"
         android:gravity="center"/>
 
-    // mostrara la lista de tareas
+   <!-- mostrara la lista de tareas -->
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerObjetivos"

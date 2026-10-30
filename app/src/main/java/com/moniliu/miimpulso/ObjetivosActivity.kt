@@ -4,6 +4,7 @@ import android.content.Intent
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
@@ -51,6 +52,7 @@ class ObjetivosActivity : AppCompatActivity() {
             objetivosFiltrados,
 
             onItemClick = { objetivo ->
+                Toast.makeText(this, "has  pulsado el objetivo", Toast.LENGTH_SHORT).show()
                 val intent = Intent(
                 this,
                 DetalleObjetivoActivity::class.java
@@ -58,10 +60,14 @@ class ObjetivosActivity : AppCompatActivity() {
                 intent.putExtra("titulo", objetivo.titulo)
                 intent.putExtra("categoria", objetivo.categoria)
                 intent.putExtra("completado", objetivo.completado)
+                intent.putExtra("descripcion", objetivo.descripcion)
+
+
                 startActivity(intent)
 
         },
             onItemCheck = { ojetivo ->
+
                 objetivoDAO.update(ojetivo)
 
             },
@@ -121,11 +127,26 @@ class ObjetivosActivity : AppCompatActivity() {
             campoTexto.hint = "Escribe tu objetivo"
             campoTexto.setPadding(40, 24, 40, 24)
 
+            // crea una variable para el segundo campo
+            val campoDescripcion = EditText(this)
+            campoDescripcion.hint = "Describe tu objetivo"
+
+            // hint indicacion que desaparece al escribir
+            campoDescripcion.minLines = 3
+            campoDescripcion.setPadding(40,24, 40,24)
+
+            val contenedor = LinearLayout(this)
+            contenedor.orientation = LinearLayout.VERTICAL
+
+            contenedor.addView(campoTexto)
+            contenedor.addView(campoDescripcion)
+
+
             // creamos la ventana para añadir un objetivo
 
             val dialogo = AlertDialog.Builder(this)
                 .setTitle("Nuevo objetivo")
-                .setView(campoTexto)
+                .setView(contenedor)
                 .setPositiveButton("Guardar", null)
                 .setNegativeButton("Cancelar",null)
                 .create()
@@ -137,12 +158,18 @@ class ObjetivosActivity : AppCompatActivity() {
 
                     val titulo = campoTexto.text.toString().trim()
 
+                    val descripcion = campoDescripcion.text.toString().trim()
+
                     if (titulo.isEmpty()){
                         campoTexto.error = "Escribe un objetivo"
                     } else {
                         // crea un objetivo (? utiliza el valor de la categoria)
 
-                        val nuevoObjetivo = Objetivo(titulo = titulo, categoria = categoria ?: "Personal")
+                        val nuevoObjetivo = Objetivo(
+                            titulo = titulo,
+                            categoria = categoria ?: "Personal",
+                            descripcion = descripcion
+                        )
 
                         // guarda el objetivo en SQLite
 

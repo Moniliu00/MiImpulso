@@ -13,7 +13,7 @@ class ObjetivoDAO (val context: Context){
         values.put("titulo", objetivo.titulo)
         values.put("categoria", objetivo.categoria)
         values.put("completado", if (objetivo.completado) 1 else 0)
-        values.put("descripcion", objetivo.decripcion)
+        values.put("description", objetivo.descripcion)
 
         db.insertOrThrow("objetivos", null,  values)
         db.close()
@@ -50,11 +50,17 @@ class ObjetivoDAO (val context: Context){
 
                 val completado = it.getInt(it.getColumnIndexOrThrow("completado")) == 1
 
+                val descripcion= it.getString(
+                    it.getColumnIndexOrThrow("description")
+                )
+
                 val objetivo = Objetivo(
                     id,
                     titulo,
                     categoria,
-                    completado)
+                    completado,
+                    descripcion)
+
 
                 listaObjetivos.add(objetivo)
             }

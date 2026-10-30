@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 // gestiona la creación de la base de datos
 class DataBaseManager (context: Context) :
-        SQLiteOpenHelper(context, "miimpulso.db", null,2){
+        SQLiteOpenHelper(context, "miimpulso.db", null,3){
 
     // crea la tabla cuando se utiliza la base de datos por primera vez
 
@@ -25,9 +25,32 @@ class DataBaseManager (context: Context) :
     }
     // servira para actualizar la estructura en futuras versiones
 
-    override fun onUpgrade(db: SQLiteDatabase, oldVersion: Int, newVersion: Int) {
-       if (oldVersion > 2){
-          db.execSQL ("ALER TABLE objetivos ADD COLUMN description TEXT NOT NULL DEFAULT ''")
+    override fun onUpgrade(
+        db: SQLiteDatabase,
+        oldVersion: Int,
+        newVersion: Int
+    ) {
+        val cursor = db.rawQuery(
+            "PRAGMA table_info(objetivos)",
+            null
+        )
+        var existeDescripcion = false
+
+        cursor.use {
+
+            while (it.moveToNext()){
+                val nombre = it.getString(
+                    it.getColumnIndexOrThrow("name")
+                )
+                if (nombre == "descripcion"){
+                    existeDescripcion = true
+                }
+            }
+        }
+       if (!existeDescripcion){
+          db.execSQL (
+              "ALTER TABLE objetivos ADD COLUMN description TEXT NOT NULL DEFAULT ''"
+          )
        }
     }
 }

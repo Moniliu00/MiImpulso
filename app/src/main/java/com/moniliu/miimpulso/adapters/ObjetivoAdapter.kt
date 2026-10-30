@@ -58,6 +58,8 @@ class ObjetivoAdapter (
 
         holder.titulo.text = objetivo.titulo
         holder.check.isChecked = objetivo.completado
+
+
         // cuando pulsemos la casilla
         holder.check.setOnClickListener {
             objetivo.completado = holder.check.isChecked
@@ -66,7 +68,12 @@ class ObjetivoAdapter (
         }
 
         // cuando pulsamos la fila
-        holder.itemView.setOnClickListener { onItemClick(objetivo)
+        holder.itemView.setOnClickListener {
+            onItemClick(objetivo)
+        }
+
+        holder.titulo.setOnClickListener {
+            onItemClick(objetivo)
         }
 
         holder.itemView.setOnLongClickListener {
