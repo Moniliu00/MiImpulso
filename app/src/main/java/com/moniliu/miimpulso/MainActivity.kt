@@ -7,6 +7,10 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.content.Intent
+import android.widget.EditText
+import android.widget.TextView
+import androidx.appcompat.app.AlertDialog
+import com.moniliu.miimpulso.utils.SessionManager
 
 
 class MainActivity : AppCompatActivity() {
@@ -15,6 +19,49 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         setContentView(R.layout.activity_main)
+
+        // crea gestor de preferencias
+        val sessionManager = SessionManager(this)
+
+        // busca si ya tenemos un nombre guardado
+        val nombreGuardado = sessionManager.obtenerNombre()
+
+        val txtSaludo = findViewById<TextView>(R.id.txtSaludo)
+        if (nombreGuardado.isNotEmpty()){
+            txtSaludo.text = "¡Hola, $nombreGuardado!"
+        }
+
+        // comprueba si todabia no tiene un nombre
+
+        if (nombreGuardado.isEmpty()){
+
+            val campoNombre = EditText(this)
+            campoNombre.hint = "Escribe tu nombre"
+
+            val dialogo = AlertDialog.Builder(this)
+                .setTitle("¡Bienvenido a Mi Impulso!")
+                .setMessage("¿Como te llamas?")
+                .setView(campoNombre)
+                .setPositiveButton("Guardar", null)
+                .create()
+
+            dialogo.setOnShowListener {
+                dialogo.getButton(AlertDialog.BUTTON_POSITIVE)
+                    .setOnClickListener {
+                        val nombre = campoNombre.text.toString().trim()
+
+                        if (nombre.isEmpty()){
+                            campoNombre.error = "Escribe tu nombre"
+                        } else{
+                            sessionManager.guardarNombre(nombre)
+                            txtSaludo.text = "Hola, $nombre!"
+                            dialogo.dismiss()
+                        }
+                    }
+            }
+
+           dialogo.show()
+        }
 
         val btnEstudios = findViewById<Button>(R.id.btnEstudios)
         btnEstudios.setOnClickListener {
