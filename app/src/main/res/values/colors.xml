@@ -8,4 +8,9 @@
     <color name="impulso_proyectos">#A87E75</color>
     <color name="impulso_personal">#9481A1</color>
     <color name="impulso_texto">#777360</color>
+
+    <color name="impulso_tarjeta">#F8F8F4</color>
+    <color name="impulso_borde_tarjeta">#E6E6E0</color>
+    <color name="impulso_texto_secundario">#7A7A7A</color>
+
 </resources>

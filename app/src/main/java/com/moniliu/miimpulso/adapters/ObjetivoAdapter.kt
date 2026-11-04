@@ -28,6 +28,8 @@ class ObjetivoAdapter (
 
         val titulo: TextView = view.findViewById(R.id.txtTituloObjetivo)
 
+        val resumen = itemView.findViewById<TextView>(R.id.txtResunmenObjetivo)
+
         val check: CheckBox = view.findViewById(R.id.checkCompletado)
 
         val eliminar : ImageButton = view.findViewById(R.id.btnEliminar)
@@ -57,6 +59,11 @@ class ObjetivoAdapter (
         }
 
         holder.titulo.text = objetivo.titulo
+        holder.resumen.text = if (objetivo.descripcion.isNullOrBlank()){
+            "Sin descripción"
+        }else{
+            objetivo.descripcion
+        }
         holder.check.isChecked = objetivo.completado
 
 
