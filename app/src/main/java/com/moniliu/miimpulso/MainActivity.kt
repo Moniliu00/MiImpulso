@@ -10,7 +10,12 @@ import android.content.Intent
 import android.widget.EditText
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
+import com.moniliu.miimpulso.network.Frase
+import com.moniliu.miimpulso.network.RetrofitClient
 import com.moniliu.miimpulso.utils.SessionManager
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +24,30 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         setContentView(R.layout.activity_main)
+
+        val txtFrase = findViewById<TextView>(R.id.txtFrase)
+
+        RetrofitClient.api.obtenerFrase().enqueue(object  : Callback<Frase> {
+
+            override fun onResponse(
+                call: Call<Frase>,
+                response: Response<Frase>
+            ){
+                val frase = response.body()
+
+                if (response.isSuccessful && frase != null){
+                    txtFrase.text = frase.text
+                }else {
+                    txtFrase.text = "Hoy es un buen día para avanzar"
+                }
+            }
+
+            override fun onFailure(call: Call<Frase>, t: Throwable){
+                txtFrase.text = "Cada pequeño paso cuenta"
+            }
+
+
+        })
 
         // crea gestor de preferencias
         val sessionManager = SessionManager(this)

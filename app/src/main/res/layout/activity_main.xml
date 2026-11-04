@@ -41,6 +41,18 @@
         android:layout_marginTop="24dp"
         android:layout_marginBottom="16dp"/>
 
+    <TextView
+        android:id="@+id/txtFrase"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Buscando tu frase del día..."
+        android:textSize="15sp"
+        android:textColor="@color/impulso_verde"
+        android:gravity="center"
+        android:padding="16dp"
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="16dp"/>
+
     <Button
         android:id="@+id/btnEstudios"
         android:layout_width="match_parent"
