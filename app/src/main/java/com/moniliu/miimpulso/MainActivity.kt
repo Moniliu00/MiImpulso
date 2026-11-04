@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import android.content.Intent
 import android.widget.EditText
+import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.appcompat.app.AlertDialog
 import com.moniliu.miimpulso.network.Frase
@@ -16,6 +17,9 @@ import com.moniliu.miimpulso.utils.SessionManager
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.Locale
 
 
 class MainActivity : AppCompatActivity() {
@@ -24,6 +28,19 @@ class MainActivity : AppCompatActivity() {
         enableEdgeToEdge()
 
         setContentView(R.layout.activity_main)
+
+        val txtFecha = findViewById<TextView>(R.id.txtFecha)
+
+        val formatoFecha = SimpleDateFormat(
+            "EEEE, d 'de' MMMM",
+            Locale("es","ES")
+        )
+
+        val fechaActual = formatoFecha.format(Date())
+
+        txtFecha.text = fechaActual.replaceFirstChar {
+            it.titlecase(Locale("es", "Es"))
+        }
 
         val txtFrase = findViewById<TextView>(R.id.txtFrase)
 
@@ -92,7 +109,7 @@ class MainActivity : AppCompatActivity() {
            dialogo.show()
         }
 
-        val btnEstudios = findViewById<Button>(R.id.btnEstudios)
+        val btnEstudios = findViewById<LinearLayout>(R.id.btnEstudios)
         btnEstudios.setOnClickListener {
             val intent = Intent(this, ObjetivosActivity::class.java)
             intent.putExtra("categoria", "Estudios")

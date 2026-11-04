@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -9,6 +9,17 @@
     android:layout_gravity="center"
     android:padding="24dp"
     android:background="@color/impulso_fondo">
+
+    <TextView
+        android:id="@+id/txtFecha"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Miercoles, 4 de noviembre"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        android:textColor="@color/impulso_verde"
+        android:gravity="start"
+        android:layout_marginBottom="24dp"/>
 
     <TextView
         android:layout_width="match_parent"
@@ -27,40 +38,101 @@
         android:textSize="16sp"
         android:textColor="@color/impulso_texto"
         android:gravity="center"
-        android:layout_marginBottom="48dp"/>
+        android:layout_marginBottom="16dp"/>
 
     <TextView
         android:id="@+id/txtSaludo"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Hola"
-        android:textSize="22sp"
+        android:textSize="28sp"
         android:textStyle="bold"
         android:textColor="@color/impulso_verde"
-        android:gravity="center"
-        android:layout_marginTop="24dp"
-        android:layout_marginBottom="16dp"/>
-
-    <TextView
-        android:id="@+id/txtFrase"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Buscando tu frase del día..."
-        android:textSize="15sp"
-        android:textColor="@color/impulso_verde"
-        android:gravity="center"
-        android:padding="16dp"
+        android:gravity="start"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginBottom="8dp"/>
 
-    <Button
-        android:id="@+id/btnEstudios"
+    <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="MIS ESTUDIOS"
-        android:textColor="@color/impulso_blanco"
-        android:backgroundTint="@color/impulso_estudios"
-        android:layout_marginBottom="16dp"/>
+        android:layout_marginTop="12dp"
+        android:layout_marginBottom="24dp"
+        app:cardCornerRadius="20dp"
+        app:cardElevation="2dp"
+        app:cardBackgroundColor="@color/impulso_tarjeta"
+        app:strokeColor="@color/impulso_borde_tarjeta"
+        app:strokeWidth="1dp">
+
+        <TextView
+            android:id="@+id/txtFrase"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Buscando tu frase del día..."
+            android:textSize="15sp"
+            android:textColor="@color/impulso_verde"
+            android:gravity="center"
+            android:padding="16dp"
+            android:layout_marginTop="12dp"
+            android:layout_marginBottom="16dp"/>
+
+    </com.google.android.material.card.MaterialCardView>
+
+   <LinearLayout
+       android:id="@+id/btnEstudios"
+       android:layout_width="match_parent"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="20dp"
+       android:padding="16dp"
+       android:orientation="horizontal"
+       android:gravity="center_vertical"
+       android:background="@drawable/fondo_estudios"
+       android:clickable="true"
+       android:focusable="true">
+
+       <ImageView
+           android:layout_width="48dp"
+           android:layout_height="48dp"
+           android:src="@drawable/ic_estudios"
+           android:contentDescription="Estudios"
+           android:padding="8dp"/>
+
+       <LinearLayout
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:orientation="vertical"
+           android:layout_marginStart="12dp">
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Mis estudios"
+               android:textSize="20dp"
+               android:textStyle="bold"
+               android:textColor="@color/impulso_verde"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="4dp"
+               android:text="Temario, repasos, objetivos..."/>
+       </LinearLayout>
+
+       <TextView
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:text=">"
+           android:textSize="32sp"
+           android:textColor="@color/impulso_verde"
+           android:paddingStart="8dp"
+           android:paddingEnd="4dp"/>
+
+
+
+
+
+   </LinearLayout>
+
     <Button
         android:id="@+id/btnProtectos"
         android:layout_width="match_parent"
