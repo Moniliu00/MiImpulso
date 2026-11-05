@@ -12,5 +12,18 @@
     <color name="impulso_tarjeta">#F8F8F4</color>
     <color name="impulso_borde_tarjeta">#E6E6E0</color>
     <color name="impulso_texto_secundario">#7A7A7A</color>
+    <color name="impulso_icono_estudios">#DDE5CF</color>
+    <color name="impulso_icono_proyectos">#F1D3D1</color>
+    <color name="impulso_texto_proyectos">#75434E</color>
+    <color name="impulso_icono_personal">#E7DDF0</color>
+    <color name="impulso_texto_personal">#594370</color>
+    <color name="impulso_fondo_frase">#EAF0E4</color>
+    <color name="impulso_texto_estudios">#294E38</color>
+
+
+
+
+
+
 
 </resources>

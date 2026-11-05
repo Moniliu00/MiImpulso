@@ -7,7 +7,10 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:layout_gravity="center"
-    android:padding="24dp"
+    android:paddingStart="24dp"
+    android:paddingEnd="24dp"
+    android:paddingTop="32dp"
+    android:paddingBottom="24dp"
     android:background="@color/impulso_fondo">
 
     <TextView
@@ -19,6 +22,8 @@
         android:textStyle="bold"
         android:textColor="@color/impulso_verde"
         android:gravity="start"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginBottom="24dp"/>
 
     <TextView
@@ -50,51 +55,81 @@
         android:textColor="@color/impulso_verde"
         android:gravity="start"
         android:layout_marginTop="12dp"
-        android:layout_marginBottom="8dp"/>
+        android:layout_marginBottom="8dp"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"/>
 
     <com.google.android.material.card.MaterialCardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginStart="12dp"
+        android:layout_marginEnd="12dp"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="24dp"
         app:cardCornerRadius="20dp"
         app:cardElevation="2dp"
-        app:cardBackgroundColor="@color/impulso_tarjeta"
         app:strokeColor="@color/impulso_borde_tarjeta"
         app:strokeWidth="1dp">
 
-        <TextView
-            android:id="@+id/txtFrase"
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Buscando tu frase del día..."
-            android:textSize="15sp"
-            android:textColor="@color/impulso_verde"
-            android:gravity="center"
-            android:padding="16dp"
-            android:layout_marginTop="12dp"
-            android:layout_marginBottom="16dp"/>
+            android:orientation="vertical"
+            android:padding="24dp"
+            android:background="@drawable/fondo_impulso_anterior">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:gravity="center_vertical"
+                android:layout_marginBottom="12dp">
+
+                <ImageView
+                    android:layout_width="22dp"
+                    android:layout_height="22dp"
+                    android:src="@drawable/ic_impulso"
+                    android:tint="@color/impulso_verde"
+                    android:contentDescription="Inspiración"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="TU IMPULSO DE HOY"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:textColor="@color/impulso_verde" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/txtFrase"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Buscando tu frase del día..."
+                android:textSize="15sp"
+                android:textColor="@color/impulso_verde"
+                android:gravity="start" />
+
+        </LinearLayout>
 
     </com.google.android.material.card.MaterialCardView>
 
    <LinearLayout
        android:id="@+id/btnEstudios"
-       android:layout_width="match_parent"
-       android:layout_height="wrap_content"
-       android:layout_marginTop="20dp"
-       android:padding="16dp"
-       android:orientation="horizontal"
-       android:gravity="center_vertical"
-       android:background="@drawable/fondo_estudios"
-       android:clickable="true"
-       android:focusable="true">
+       style="@style/TarjetaInicio"
+       android:backgroundTint="@color/impulso_estudios">
 
        <ImageView
-           android:layout_width="48dp"
-           android:layout_height="48dp"
+           android:layout_width="56dp"
+           android:layout_height="56dp"
            android:src="@drawable/ic_estudios"
            android:contentDescription="Estudios"
-           android:padding="8dp"/>
+           android:padding="16dp"
+           android:background="@drawable/fondo_icono"
+           android:tint="@color/impulso_texto"
+           android:backgroundTint="@color/impulso_icono_estudios"/>
 
        <LinearLayout
            android:layout_width="0dp"
@@ -109,45 +144,136 @@
                android:text="Mis estudios"
                android:textSize="20dp"
                android:textStyle="bold"
-               android:textColor="@color/impulso_verde"/>
+               android:textColor="@color/impulso_texto_estudios"/>
 
            <TextView
                android:layout_width="match_parent"
                android:layout_height="wrap_content"
                android:layout_marginTop="4dp"
-               android:text="Temario, repasos, objetivos..."/>
+               android:text="Temario, repasos, objetivos..."
+               android:textColor="@color/impulso_texto_estudios"/>
+       </LinearLayout>
+
+       <ImageView
+           android:layout_width="32dp"
+           android:layout_height="32dp"
+           android:src="@drawable/ic_flecha"
+           android:tint="@color/impulso_texto_estudios"
+           android:background="@drawable/fondo_icono"
+           android:backgroundTint="@color/impulso_icono_estudios"
+           android:padding="6dp"
+           android:contentDescription="Ver estudios"/>
+
+   </LinearLayout>
+
+   <LinearLayout
+       android:id="@+id/btnProyectos"
+       style="@style/TarjetaInicio"
+       android:backgroundTint="@color/impulso_proyectos">
+
+       <ImageView
+           android:layout_width="56dp"
+           android:layout_height="56dp"
+           android:src="@drawable/ic_proyectos"
+           android:background="@drawable/fondo_icono"
+           android:backgroundTint="@color/impulso_icono_proyectos"
+           android:tint="@color/impulso_texto_proyectos"
+           android:padding="14dp"
+           android:contentDescription="Proyectos"/>
+
+       <LinearLayout
+           android:layout_width="0dp"
+           android:layout_height="wrap_content"
+           android:layout_weight="1"
+           android:layout_marginStart="12dp"
+           android:orientation="vertical">
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:text="Mis Proyectos"
+               android:textSize="20sp"
+               android:textStyle="bold"
+               android:textColor="@color/impulso_texto_proyectos"/>
+
+           <TextView
+               android:layout_width="match_parent"
+               android:layout_height="wrap_content"
+               android:layout_marginTop="4dp"
+               android:text="Trabajo, ideas, creatividad..."
+               android:textSize="13sp"
+               android:textColor="@color/impulso_texto_proyectos"/>
+
        </LinearLayout>
 
        <TextView
            android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:text=">"
+           android:text=" > "
            android:textSize="32sp"
-           android:textColor="@color/impulso_verde"
+           android:textColor="@color/impulso_texto_proyectos"
            android:paddingStart="8dp"
            android:paddingEnd="4dp"/>
 
-
-
-
-
    </LinearLayout>
 
-    <Button
-        android:id="@+id/btnProtectos"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="MIS PROYECTOS"
-        android:textColor="@color/impulso_blanco"
-        android:backgroundTint="@color/impulso_proyectos"
-        android:layout_marginBottom="16dp"/>
-    <Button
+
+    <LinearLayout
         android:id="@+id/btnPersonal"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="MIS OBJETIVOS PERSONALES"
-        android:textColor="@color/impulso_blanco"
-        android:backgroundTint="@color/impulso_personal"/>
+        style="@style/TarjetaInicio"
+        android:backgroundTint="@color/impulso_personal">
+
+        <ImageView
+            android:layout_width="56dp"
+            android:layout_height="56dp"
+            android:src="@drawable/ic_personal"
+            android:background="@drawable/fondo_icono"
+            android:backgroundTint="@color/impulso_icono_personal"
+            android:tint="@color/impulso_texto_personal"
+            android:padding="14dp"
+            android:contentDescription="Objetivos personales"/>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:layout_marginStart="12dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mis objetivos personales"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/impulso_texto_personal"/>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:text="Hábitos, bienestar, salud..."
+                android:textSize="13sp"
+                android:textColor="@color/impulso_texto_personal"/>
+
+        </LinearLayout>
+
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text=">"
+            android:textSize="32sp"
+            android:textColor="@color/impulso_texto_personal"
+            android:paddingStart="8dp"
+            android:paddingEnd="4dp"/>
+
+    </LinearLayout>
+
+
+
+
+
 
 
 </LinearLayout>

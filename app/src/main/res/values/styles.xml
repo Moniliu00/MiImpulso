@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+   <style name="TarjetaInicio">
+       <item name="android:layout_width">match_parent</item>
+       <item name="android:layout_height">88dp</item>
+       <item name="android:layout_marginStart">12dp</item>
+       <item name="android:layout_marginEnd">12dp</item>
+       <item name="android:layout_marginTop">16dp</item>
+       <item name="android:padding">16dp</item>
+       <item name="android:orientation">horizontal</item>
+       <item name="android:gravity">center_vertical</item>
+       <item name="android:background">@drawable/fondo_tarjeta_inicio</item>
+       <item name="android:clickable">true</item>
+       <item name="android:focusable">true</item>
+   </style>
+
+</resources>

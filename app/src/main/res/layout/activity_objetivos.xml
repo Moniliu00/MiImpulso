@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:id="@+id/main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -31,20 +31,35 @@
     <Button
         android:id="@+id/btnNuevoObjetivo"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="54dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:textAllCaps="false"
+        android:textSize="16dp"
+        android:textStyle="bold"
         android:text="+ Nuevo objetivo"
         android:textColor="@color/impulso_blanco"
         android:backgroundTint="@color/impulso_estudios"
         android:layout_marginTop="12dp"
         android:layout_marginBottom="12dp"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnVolver"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:textAllCaps="false"
+        android:textSize="16dp"
+        android:textStyle="bold"
         android:text="Volver al inicio"
-        android:textColor="@color/impulso_blanco"
-        android:backgroundTint="@color/impulso_verde"
-        android:layout_marginTop="24dp"/>
+        android:textColor="@color/impulso_texto_estudios"
+        android:backgroundTint="@color/impulso_icono_estudios"
+        android:layout_marginTop="24dp"
+        android:layout_marginBottom="24dp"
+        app:icon="@drawable/ic_home"
+        app:iconTint="@color/impulso_texto_estudios"
+        app:iconPadding="8dp"
+        app:iconGravity="textStart"/>
 
 </LinearLayout>

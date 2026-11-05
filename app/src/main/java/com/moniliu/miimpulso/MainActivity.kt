@@ -116,14 +116,14 @@ class MainActivity : AppCompatActivity() {
             startActivity(intent)
         }
 
-        val btnProyectos = findViewById<Button>(R.id.btnProtectos)
+        val btnProyectos = findViewById<LinearLayout>(R.id.btnProyectos)
         btnProyectos.setOnClickListener {
             val intent= Intent (this, ObjetivosActivity::class.java)
             intent.putExtra("categoria", "Proyectos")
             startActivity(intent)
             }
 
-        val btnPersonal = findViewById<Button>(R.id.btnPersonal)
+        val btnPersonal = findViewById<LinearLayout>(R.id.btnPersonal)
         btnPersonal.setOnClickListener {
             val intent = Intent(this, ObjetivosActivity::class.java)
             intent.putExtra("categoria", "Personal")
