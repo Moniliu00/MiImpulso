@@ -206,14 +206,15 @@
 
        </LinearLayout>
 
-       <TextView
-           android:layout_width="wrap_content"
-           android:layout_height="wrap_content"
-           android:text=" > "
-           android:textSize="32sp"
-           android:textColor="@color/impulso_texto_proyectos"
-           android:paddingStart="8dp"
-           android:paddingEnd="4dp"/>
+       <ImageView
+           android:layout_width="32dp"
+           android:layout_height="32dp"
+           android:src="@drawable/ic_flecha"
+           android:tint="@color/impulso_texto_proyectos"
+           android:background="@drawable/fondo_icono"
+           android:backgroundTint="@color/impulso_icono_proyectos"
+           android:padding="6dp"
+           android:contentDescription="Ver estudios"/>
 
    </LinearLayout>
 
@@ -258,15 +259,15 @@
 
         </LinearLayout>
 
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text=">"
-            android:textSize="32sp"
-            android:textColor="@color/impulso_texto_personal"
-            android:paddingStart="8dp"
-            android:paddingEnd="4dp"/>
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:src="@drawable/ic_flecha"
+            android:tint="@color/impulso_texto_personal"
+            android:background="@drawable/fondo_icono"
+            android:backgroundTint="@color/impulso_icono_personal"
+            android:padding="6dp"
+            android:contentDescription="Ver estudios"/>
 
     </LinearLayout>
 

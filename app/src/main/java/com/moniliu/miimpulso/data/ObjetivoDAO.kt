@@ -79,6 +79,8 @@ class ObjetivoDAO (val context: Context){
         val values = ContentValues()
 
         values.put ( "completado", if (objetivo.completado) 1 else 0)
+        values.put("titulo",objetivo.titulo)
+        values.put("description", objetivo.descripcion)
 
         //actualiza el objetivo que tenga el ID indicado
         db.update("objetivos", values, "id = ?", arrayOf(objetivo.id.toString()))

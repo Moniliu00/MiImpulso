@@ -2,12 +2,19 @@ package com.moniliu.miimpulso.activities
 
 import android.os.Bundle
 import android.widget.Button
+import android.widget.EditText
+import android.widget.ImageView
+import android.widget.LinearLayout
 import android.widget.TextView
+import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
+import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import com.moniliu.miimpulso.R
+import com.moniliu.miimpulso.data.Objetivo
+import com.moniliu.miimpulso.data.ObjetivoDAO
 
 class DetalleObjetivoActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -20,6 +27,7 @@ class DetalleObjetivoActivity : AppCompatActivity() {
         val titulo = intent.getStringExtra("titulo")
         val categoria = intent.getStringExtra("categoria")
         val descripcion = intent.getStringExtra("descripcion")
+        val objetivoId = intent.getIntExtra("id",-1)
 
 
         //recupera un valor verdadero o falso
@@ -29,6 +37,7 @@ class DetalleObjetivoActivity : AppCompatActivity() {
         val txtCategoria = findViewById<TextView>(R.id.txtDetalleCategoria)
         val txtEstado = findViewById<TextView>(R.id.txtDetalleEstado)
         val txtDescripcion = findViewById<TextView>(R.id.txtDetalleDescripcion)
+        val btnEditar = findViewById<ImageView>(R.id.btnEditarObjetivo)
 
         txtTitulo.text = titulo ?: "Sin titulo"
         txtCategoria.text = categoria ?: "Sin categoria"
@@ -42,6 +51,55 @@ class DetalleObjetivoActivity : AppCompatActivity() {
             // muestra si la descripcion es real
         } else {
             descripcion
+        }
+
+        btnEditar.setOnClickListener {
+
+           val campoTitulo = EditText(this).apply {
+               setText (txtTitulo.text.toString())
+               hint = "Titulo del objetivo"
+               setSingleLine(true)
+           }
+            val campoDescripcion = EditText(this).apply {
+                setText (descripcion.orEmpty())
+                hint = "Descripción"
+                minLines = 2
+            }
+            val contenedor = LinearLayout(this).apply {
+                orientation = LinearLayout.VERTICAL
+                setPadding(48,16,48,0)
+                addView (campoTitulo)
+                addView(campoDescripcion)
+
+            }
+
+            AlertDialog.Builder(this)
+                .setTitle("EditarObjetivo")
+                .setView(contenedor)
+                .setNegativeButton("Cancelar",null)
+                .setPositiveButton("Guardar") {_,_ ->
+                    val nuevoTitulo = campoTitulo.text.toString().trim()
+                    val nuevaDescripcion = campoDescripcion.text.toString().trim()
+
+                    if (nuevoTitulo.isNotEmpty() && objetivoId != -1){
+                        val objetivoEditado = Objetivo(
+                            id = objetivoId,
+                            titulo = nuevoTitulo,
+                            categoria = categoria.orEmpty(),
+                            completado = completado,
+                            descripcion = nuevaDescripcion
+                        )
+                        ObjetivoDAO(this).update(objetivoEditado)
+
+                        txtTitulo.text =nuevoTitulo
+                        txtDescripcion.text = nuevaDescripcion.ifEmpty{
+                            "Sin descripción"
+                        }
+
+                    }
+
+                }
+                .show()
         }
 
         val btnVolver = findViewById<Button>(R.id.btnVolverObjetivos)

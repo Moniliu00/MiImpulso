@@ -20,6 +20,9 @@ import com.moniliu.miimpulso.data.Objetivo
 import com.moniliu.miimpulso.data.ObjetivoDAO
 
 class ObjetivosActivity : AppCompatActivity() {
+
+    var todosObjetivos: List<Objetivo> = emptyList()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
@@ -40,7 +43,7 @@ class ObjetivosActivity : AppCompatActivity() {
         val recyclerObjetivos = findViewById<RecyclerView>(R.id.recyclerObjetivos)
 
         // consultamos los objetivos guardados (recupera las tareas SQLite)
-        val todosObjetivos = objetivoDAO.findAll()
+          todosObjetivos = objetivoDAO.findAll()
 
         //mostramos solo los de la categoria seleccionada (filtra segun categoria)
         val objetivosFiltrados = todosObjetivos.filter {
@@ -52,7 +55,7 @@ class ObjetivosActivity : AppCompatActivity() {
             objetivosFiltrados,
 
             onItemClick = { objetivo ->
-                Toast.makeText(this, "has  pulsado el objetivo", Toast.LENGTH_SHORT).show()
+
                 val intent = Intent(
                 this,
                 DetalleObjetivoActivity::class.java
@@ -61,6 +64,7 @@ class ObjetivosActivity : AppCompatActivity() {
                 intent.putExtra("categoria", objetivo.categoria)
                 intent.putExtra("completado", objetivo.completado)
                 intent.putExtra("descripcion", objetivo.descripcion)
+                intent.putExtra("id", objetivo.id)
 
 
                 startActivity(intent)
@@ -198,5 +202,19 @@ class ObjetivosActivity : AppCompatActivity() {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom)
             insets
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        val categoria = intent.getStringExtra("categoria")
+        val objetivoDAO = ObjetivoDAO(this)
+
+        val listaActualizada = objetivoDAO.findAll().filter {
+            it.categoria == categoria
+        }
+
+        val recycler = findViewById<RecyclerView>(R.id.recyclerObjetivos)
+        (recycler.adapter as?  ObjetivoAdapter)?.actualizarLista(listaActualizada)
     }
 }

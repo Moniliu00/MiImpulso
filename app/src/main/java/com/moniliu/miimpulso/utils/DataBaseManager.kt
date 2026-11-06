@@ -5,7 +5,7 @@ import android.database.sqlite.SQLiteDatabase
 import android.database.sqlite.SQLiteOpenHelper
 // gestiona la creación de la base de datos
 class DataBaseManager (context: Context) :
-        SQLiteOpenHelper(context, "miimpulso.db", null,3){
+        SQLiteOpenHelper(context, "miimpulso.db", null,4){
 
     // crea la tabla cuando se utiliza la base de datos por primera vez
 
@@ -42,7 +42,7 @@ class DataBaseManager (context: Context) :
                 val nombre = it.getString(
                     it.getColumnIndexOrThrow("name")
                 )
-                if (nombre == "descripcion"){
+                if (nombre == "description"){
                     existeDescripcion = true
                 }
             }
