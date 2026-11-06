@@ -10,6 +10,7 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -18,8 +19,11 @@ import com.moniliu.miimpulso.activities.DetalleObjetivoActivity
 import com.moniliu.miimpulso.adapters.ObjetivoAdapter
 import com.moniliu.miimpulso.data.Objetivo
 import com.moniliu.miimpulso.data.ObjetivoDAO
+import com.moniliu.miimpulso.databinding.ActivityObjetivosBinding
 
 class ObjetivosActivity : AppCompatActivity() {
+
+    private lateinit var binding: ActivityObjetivosBinding
 
     var todosObjetivos: List<Objetivo> = emptyList()
 
@@ -27,20 +31,71 @@ class ObjetivosActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         enableEdgeToEdge()
 
-        setContentView(R.layout.activity_objetivos)
+        binding = ActivityObjetivosBinding.inflate(layoutInflater)
+        setContentView(binding.root)
+
         val categoria = intent.getStringExtra("categoria")
-        val titulo = findViewById<TextView>(R.id.txtCategoria)
-        titulo.text = categoria ?: "Mis objetivos"
 
-        val btnVolver = findViewById<Button>(R.id.btnVolver)
-        btnVolver.setOnClickListener {
+        binding.tooldbarObjetivos.title = categoria ?: "Mis objetivos"
+
+        binding.tooldbarObjetivos.setNavigationIcon(
+            androidx.appcompat.R.drawable.abc_ic_ab_back_material
+        )
+        binding.tooldbarObjetivos.setNavigationOnClickListener {
             finish()
+        }
 
+        val colorBarra = when (categoria){
+            "Estudios" -> R.color.impulso_icono_estudios
+            "Proyectos" -> R.color.impulso_icono_proyectos
+            "Personal" -> R.color.impulso_icono_personal
+            else -> R.color.impulso_icono_estudios
+
+        }
+
+        val colorTexto = when (categoria){
+            "Estudios" -> R.color.impulso_texto_estudios
+            "Proyectos" -> R.color.impulso_texto_proyectos
+            "Personal" -> R.color.impulso_texto_personal
+            else -> R.color.impulso_texto_estudios
+
+        }
+
+        val color = ContextCompat.getColor(this, colorTexto)
+        binding.tooldbarObjetivos.setTitleTextColor(color)
+        binding.tooldbarObjetivos.navigationIcon?.setTint(color)
+
+        val colorBoton = when (categoria){
+            "Estudios" -> R.color.impulso_texto_estudios
+            "Proyectos" -> R.color.impulso_texto_proyectos
+            "Personal" -> R.color.impulso_texto_personal
+            else -> R.color.impulso_texto_estudios
+        }
+        val colorBotonClaro = when (categoria){
+            "Estudios" -> R.color.impulso_icono_estudios
+            "Proyectos" -> R.color.impulso_icono_proyectos
+            "Personal" -> R.color.impulso_icono_personal
+            else -> R.color.impulso_icono_estudios
+        }
+
+        binding.btnNuevoObjetivo.backgroundTintList =
+            android.content.res.ColorStateList.valueOf(
+                ContextCompat.getColor(this, colorBoton)
+            )
+
+
+
+        binding.tooldbarObjetivos.setBackgroundColor(
+            ContextCompat.getColor(this, colorBarra)
+        )
+
+        binding.btnVolver.setOnClickListener {
+            finish()
         }
 
         val objetivoDAO = ObjetivoDAO(this)
 
-        val recyclerObjetivos = findViewById<RecyclerView>(R.id.recyclerObjetivos)
+        val recycler = binding.recyclerObjetivos
 
         // consultamos los objetivos guardados (recupera las tareas SQLite)
           todosObjetivos = objetivoDAO.findAll()
@@ -97,7 +152,7 @@ class ObjetivosActivity : AppCompatActivity() {
                             it.categoria == categoria
                         }
 
-                        recyclerObjetivos.adapter?.let {
+                        binding.recyclerObjetivos.adapter?.let {
 
                             (it as ObjetivoAdapter)
                                 .actualizarLista(listaActualizada)
@@ -117,8 +172,8 @@ class ObjetivosActivity : AppCompatActivity() {
 
 
         // conectamos el Recyclerview (muestra las tareas en pantalla)
-        recyclerObjetivos.layoutManager = LinearLayoutManager(this)
-        recyclerObjetivos.adapter = adapter
+        binding.recyclerObjetivos.layoutManager = LinearLayoutManager(this)
+        binding.recyclerObjetivos.adapter = adapter
 
         val btnNuevoObjetivo = findViewById<Button>(R.id.btnNuevoObjetivo)
 

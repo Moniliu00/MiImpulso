@@ -3,6 +3,9 @@ plugins {
 }
 
 android {
+    buildFeatures {
+        viewBinding = true
+    }
     namespace = "com.moniliu.miimpulso"
     compileSdk {
         version = release(37)
