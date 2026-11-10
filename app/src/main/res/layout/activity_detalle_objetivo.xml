@@ -17,23 +17,42 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent" >
 
-        <TextView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Mi Impulso"
-        android:textSize="14sp"
-        android:textStyle="bold"
-        android:textColor="@color/impulso_verde" />
 
-        <TextView
+        <LinearLayout
+            android:id="@+id/fondoEncabezado"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Detalle del objetivo"
-            android:textSize="28sp"
-            android:textStyle="bold"
-            android:textColor="@color/impulso_verde"
-            android:layout_marginTop="16dp"
-            android:layout_marginBottom="24dp"/>
+            android:orientation="vertical"
+            android:paddingTop="16dp"
+            android:paddingBottom="8dp"
+            android:background="@color/impulso_icono_estudios">
+
+            <TextView
+                android:id="@+id/txtMiImpulso"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Mi Impulso"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:textColor="@color/impulso_verde"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
+
+            <TextView
+                android:id="@+id/txtEncabezadoDetalle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Detalle del objetivo"
+                android:textSize="28sp"
+                android:textStyle="bold"
+                android:textColor="@color/impulso_verde"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="24dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"/>
+
+
+        </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -103,13 +122,25 @@
         android:layout_height="0dp"
         android:layout_weight="1"/>
 
-    <Button
+    <com.google.android.material.button.MaterialButton
         android:id="@+id/btnVolverObjetivos"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="56dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginEnd="24dp"
+        android:layout_marginBottom="16dp"
         android:text="Volver a mis objetivos"
-        android:backgroundTint="@color/impulso_verde"
-        android:textColor="@color/impulso_blanco"/>
+        android:textAllCaps="false"
+        android:textStyle="bold"
+        android:textSize="16sp"
+        android:textColor="@color/impulso_texto_estudios"
+        android:backgroundTint="@color/impulso_icono_estudios"
+        app:cornerRadius="28dp"
+        app:icon="@drawable/ic_flecha_left"
+        app:iconTint="@color/impulso_texto_estudios"
+        app:iconPadding="8dp"
+        app:iconGravity="textStart"/>
+
 
     </LinearLayout>
 

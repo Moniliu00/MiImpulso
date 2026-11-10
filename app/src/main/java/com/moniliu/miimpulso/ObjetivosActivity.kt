@@ -89,6 +89,19 @@ class ObjetivosActivity : AppCompatActivity() {
             ContextCompat.getColor(this, colorBarra)
         )
 
+        binding.btnVolver.backgroundTintList = android.content.res.ColorStateList.valueOf(
+            ContextCompat.getColor(this, colorBarra)
+        )
+
+        binding.btnVolver.setTextColor(
+            ContextCompat.getColor(this, colorBoton)
+        )
+
+        binding.btnVolver.iconTint =
+            android.content.res.ColorStateList.valueOf(
+            ContextCompat.getColor(this, colorBoton)
+        )
+
         binding.btnVolver.setOnClickListener {
             finish()
         }

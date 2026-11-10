@@ -1,5 +1,6 @@
 package com.moniliu.miimpulso.activities
 
+import android.content.res.ColorStateList
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
@@ -10,8 +11,10 @@ import android.widget.Toast
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
+import com.google.android.material.button.MaterialButton
 import com.moniliu.miimpulso.R
 import com.moniliu.miimpulso.data.Objetivo
 import com.moniliu.miimpulso.data.ObjetivoDAO
@@ -34,6 +37,7 @@ class DetalleObjetivoActivity : AppCompatActivity() {
         val completado = intent.getBooleanExtra("completado", false)
 
         val txtTitulo = findViewById<TextView>(R.id.txtDetalleTitulo)
+        val txtEncabezado = findViewById<TextView>(R.id.txtEncabezadoDetalle)
         val txtCategoria = findViewById<TextView>(R.id.txtDetalleCategoria)
         val txtEstado = findViewById<TextView>(R.id.txtDetalleEstado)
         val txtDescripcion = findViewById<TextView>(R.id.txtDetalleDescripcion)
@@ -102,7 +106,41 @@ class DetalleObjetivoActivity : AppCompatActivity() {
                 .show()
         }
 
-        val btnVolver = findViewById<Button>(R.id.btnVolverObjetivos)
+        val btnVolver = findViewById<MaterialButton>(R.id.btnVolverObjetivos)
+
+        val colorFondo = when (categoria){
+            "Estudios" -> R.color.impulso_icono_estudios
+            "Proyectos" -> R.color.impulso_icono_proyectos
+            "Personal" -> R.color.impulso_icono_personal
+            else -> R.color.impulso_texto_estudios
+        }
+
+        val colorTexto = when (categoria){
+            "Estudios" -> R.color.impulso_texto_estudios
+            "Proyectos" -> R.color.impulso_texto_proyectos
+            "Personal" -> R.color.impulso_texto_personal
+            else -> R.color.impulso_texto_estudios
+        }
+        val fondo = ContextCompat.getColor(this, colorFondo)
+        val texto = ContextCompat.getColor(this, colorTexto)
+        val txtMiImpulso = findViewById<TextView>(R.id.txtMiImpulso)
+        txtMiImpulso.setTextColor(texto)
+        val fondoEncabezado = findViewById<LinearLayout>(R.id.fondoEncabezado)
+        fondoEncabezado.setBackgroundColor(fondo)
+
+
+        txtTitulo.setTextColor(texto)
+        txtCategoria.setTextColor(texto)
+        txtDescripcion.setTextColor(texto)
+        txtEncabezado.setTextColor(texto)
+
+        btnEditar.setColorFilter(texto)
+
+        btnVolver.backgroundTintList =
+            ColorStateList.valueOf(fondo)
+        btnVolver.setTextColor(texto)
+        btnVolver.iconTint = ColorStateList.valueOf(texto)
+
         btnVolver.setOnClickListener {
             finish()
         }

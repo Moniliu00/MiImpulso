@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageButton
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
 import com.moniliu.miimpulso.R
 import com.moniliu.miimpulso.data.Objetivo
@@ -59,6 +60,16 @@ class ObjetivoAdapter (
         }
 
         holder.titulo.text = objetivo.titulo
+
+        val colorTitulo = when (objetivo.categoria){
+            "Estudios" -> R.color.impulso_texto_estudios
+            "Proyectos" -> R.color.impulso_texto_proyectos
+            "Personal" -> R.color.impulso_texto_personal
+            else -> R.color.impulso_texto_estudios
+        }
+        holder.titulo.setTextColor(
+            ContextCompat.getColor(holder.itemView.context, colorTitulo)
+        )
         holder.resumen.text = if (objetivo.descripcion.isNullOrBlank()){
             "Sin descripción"
         }else{
