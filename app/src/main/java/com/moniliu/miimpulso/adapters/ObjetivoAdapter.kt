@@ -1,11 +1,13 @@
 package com.moniliu.miimpulso.adapters
 
 
+import android.content.res.ColorStateList
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.CheckBox
 import android.widget.ImageButton
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.RecyclerView
@@ -34,6 +36,8 @@ class ObjetivoAdapter (
         val check: CheckBox = view.findViewById(R.id.checkCompletado)
 
         val eliminar : ImageButton = view.findViewById(R.id.btnEliminar)
+
+        val flecha: ImageView = view.findViewById(R.id.imgFlechaObjetivo)
 
     }
 
@@ -70,6 +74,25 @@ class ObjetivoAdapter (
         holder.titulo.setTextColor(
             ContextCompat.getColor(holder.itemView.context, colorTitulo)
         )
+
+        val colorFlecha = ContextCompat.getColor(
+            holder.itemView.context,
+            colorTitulo
+        )
+
+        val colorCirculo = when (objetivo.categoria){
+            "Estudios" -> R.color.impulso_icono_estudios
+            "Proyectos" -> R.color.impulso_icono_proyectos
+            "Personal" -> R.color.impulso_icono_personal
+            else -> R.color.impulso_icono_estudios
+
+        }
+
+        holder.flecha.setColorFilter(colorFlecha)
+        holder.flecha.backgroundTintList =
+            ColorStateList.valueOf(
+                ContextCompat.getColor(holder.itemView.context, colorCirculo)
+            )
         holder.resumen.text = if (objetivo.descripcion.isNullOrBlank()){
             "Sin descripción"
         }else{

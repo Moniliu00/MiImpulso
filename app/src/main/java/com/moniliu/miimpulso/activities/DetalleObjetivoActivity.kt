@@ -124,7 +124,7 @@ class DetalleObjetivoActivity : AppCompatActivity() {
         val fondo = ContextCompat.getColor(this, colorFondo)
         val texto = ContextCompat.getColor(this, colorTexto)
         val txtMiImpulso = findViewById<TextView>(R.id.txtMiImpulso)
-        txtMiImpulso.setTextColor(texto)
+        txtMiImpulso.setTextColor(texto )
         val fondoEncabezado = findViewById<LinearLayout>(R.id.fondoEncabezado)
         fondoEncabezado.setBackgroundColor(fondo)
 
